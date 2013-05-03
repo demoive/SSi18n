@@ -1,0 +1,102 @@
+
+### General settings
+#####################################
+Options +FollowSymlinks
+Options -Indexes
+
+
+### Enable GZIP compression
+#####################################
+AddOutputFilterByType DEFLATE application/atom+xml application/javascript application/json application/rss+xml application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/svg+xml image/x-icon text/css text/html text/plain text/x-component text/xml
+
+
+### Maintenance page (temporary redirect)
+#####################################
+#RewriteCond %{REMOTE_ADDR} !^11\.111\.111\.111
+#RewriteCond %{REQUEST_URI} !^/maintenance\.html$ [NC]
+#RewriteRule ^(.*)$ http://domain.com/maintenance.html [R=307,L]
+
+
+### URL formatting
+#####################################
+# http://stackoverflow.com/questions/6059920/removing-index-html-from-url-and-adding-www-with-one-single-301-redirect/6062534
+# performs the same as the next two but in just one redirect
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteCond %{REQUEST_URI} ^(.*/)index\.html$ [NC]
+#RewriteRule . http://www.%{HTTP_HOST}%1 [R=301,NE,L]
+# adds the www. in the url
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteRule . http://www.%{HTTP_HOST}%{REQUEST_URI} [NE,R=301,L]
+# removes any index.php from the path, leaving just the root
+RewriteCond %{REQUEST_URI} ^(.*/)index\.html$ [NC]
+RewriteRule . %1 [R=301,NE,L]
+#adjust the above to be ..... (?:html?|php)$ (didn't do it already just so that it can be tested first)... not sure if the non-capture group works
+
+
+### Enable Server-Side Includes (SSI)
+### http://en.wikipedia.org/wiki/Server_Side_Includes
+### http://httpd.apache.org/docs/current/mod/mod_include.html
+#####################################
+#Options -Includes
+#Options -ExecCGI
+Options +IncludesNOEXEC
+AddOutputFilter INCLUDES .inc .html
+#XBitHack on
+#SSIStartTag "{#"
+#SSIEndTag "#}"
+#SSIErrorMsg "[an error occurred while processing this directive]"
+#SSITimeFormat "%d/%m/%y"
+#SSIUndefinedEcho "<!-- undefined -->"
+
+
+### Routing
+### http://httpd.apache.org/docs/current/mod/mod_rewrite.html
+### http://httpd.apache.org/docs/current/rewrite/flags.html
+#####################################
+DirectoryIndex router.inc
+#can this be commented out?
+
+RewriteEngine On
+RewriteBase /
+
+# if URI is directly to our router, redirect to root (preserve query string)
+#RewriteRule ^/router.inc$ /router.inc [R=301,L,QSA]
+
+# only point the following to our router:
+# - files that don't exist
+# - directories that don't exist
+# - any file that ends with .inc (MISSING)
+# - anything inside the /partials/ or /includes/ directories (STILL NOT WORKING FULLY: a file inside /partials will still be shown)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d [OR]
+RewriteCond %{REQUEST_URI} ^/partials [OR]
+RewriteCond %{REQUEST_URI} ^/includes
+RewriteRule ^(.*)$ /router.inc [L,PT,NS,QSA]
+
+# for complex conditions...
+#RewriteCond a [or]
+#RewriteCond b
+#RewriteRule . - [E=FIRSTPART:true]
+#RewriteCond c [or]
+#RewriteCond d
+#RewriteRule . - [E=SECONDPART:true]
+#RewriteCond  %{ENV:FIRSTPART}  true
+#RewriteCond  %{ENV:SECONDPART}  true
+#RewriteRule  ...something
+
+
+### Setup error documents
+#####################################
+#ErrorDocument 404 /test/errordocument/404.html
+#Redirect 404 /test/trigger-error/404
+
+
+### Setup useful environment variables
+### http://www.askapache.com/htaccess/crazy-advanced-mod_rewrite-tutorial.html#Time_Crazy
+#####################################
+#RewriteRule .* - [NE,E=SSIS_LOCATION_PROTOCOL:%{REQUEST_SCHEME}:]
+#RewriteRule .* - [NE,E=SSIS_LOCATION_HOSTNAME:%{HTTP_HOST}]
+#RewriteRule .* - [NE,E=SSIS_LOCATION_PORT:%{SERVER_PORT}]
+#RewriteRule .* - [NE,E=SSIS_LOCATION_PATHNAME:%{REQUEST_URI}]
+#RewriteRule .* - [NE,E=SSIS_LOCATION_SEARCH:?%{QUERY_STRING}]
+#RewriteRule #(.*)$ - [NE,E=SSIS_LOCATION_HASH:%1]
