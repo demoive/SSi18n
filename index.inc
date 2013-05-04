@@ -25,13 +25,14 @@ TODO:
 <!--#set var="ssis.debug" value="silent" -->
 <!--#config sizefmt="abbrev" -->
 
+<!--#set var="ssis.lang.default" value="en" -->
 <!--#if expr="$REQUEST_URI == /^(?:\/([a-z]{2}))?(\/.*?)?([?].*?)?$/" -->
   <!--#set var="ssis.lang" value="$1" -->
   <!--#set var="ssis.route" value="$2" -->
   <!--#set var="ssis.query" value="$3" -->
 <!--#endif -->
 <!--#if expr="${ssis.lang} == ''" -->
-  <!--#set var="ssis.lang" value="en" -->
+  <!--#set var="ssis.lang" value="${ssis.lang.default}" -->
 <!--#endif -->
 
 <!--#include virtual="/includes/routes.inc" -->
