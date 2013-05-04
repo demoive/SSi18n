@@ -1,6 +1,7 @@
 
 ### General settings
 #####################################
+DirectoryIndex index.inc
 Options +FollowSymlinks
 Options -Indexes
 
@@ -15,6 +16,33 @@ AddOutputFilterByType DEFLATE application/atom+xml application/javascript applic
 #RewriteCond %{REMOTE_ADDR} !^11\.111\.111\.111
 #RewriteCond %{REQUEST_URI} !^/maintenance\.html$ [NC]
 #RewriteRule ^(.*)$ http://domain.com/maintenance.html [R=307,L]
+
+
+### Enable Server-Side Includes (SSI)
+### http://en.wikipedia.org/wiki/Server_Side_Includes
+### http://httpd.apache.org/docs/current/mod/mod_include.html
+#####################################
+#Options -Includes
+#Options -ExecCGI
+Options +IncludesNOEXEC
+AddOutputFilter INCLUDES .inc .html
+#XBitHack on
+#SSIStartTag "{{# "
+#SSIEndTag " #}}"
+SSIErrorMsg "<!-- SSiS Error. Contact: info@domain.com -->"
+SSITimeFormat "%d/%m/%y"
+SSIUndefinedEcho "<!-- SSiS Variable undefinded -->"
+
+
+### Routing
+### http://httpd.apache.org/docs/current/mod/mod_rewrite.html
+### http://httpd.apache.org/docs/current/rewrite/flags.html
+#####################################
+RewriteEngine On
+RewriteBase /
+
+# if URI is directly to our router, redirect to root (preserve query string)
+#RewriteRule ^index\.inc$ / [R=301,L,QSA]
 
 
 ### URL formatting
@@ -32,46 +60,21 @@ RewriteCond %{REQUEST_URI} ^(.*/)index\.html$ [NC]
 RewriteRule . %1 [R=301,NE,L]
 #adjust the above to be ..... (?:html?|php)$ (didn't do it already just so that it can be tested first)... not sure if the non-capture group works
 
-
-### Enable Server-Side Includes (SSI)
-### http://en.wikipedia.org/wiki/Server_Side_Includes
-### http://httpd.apache.org/docs/current/mod/mod_include.html
-#####################################
-#Options -Includes
-#Options -ExecCGI
-Options +IncludesNOEXEC
-AddOutputFilter INCLUDES .inc .html
-#XBitHack on
-#SSIStartTag "{#"
-#SSIEndTag "#}"
-#SSIErrorMsg "[an error occurred while processing this directive]"
-#SSITimeFormat "%d/%m/%y"
-#SSIUndefinedEcho "<!-- undefined -->"
-
-
-### Routing
-### http://httpd.apache.org/docs/current/mod/mod_rewrite.html
-### http://httpd.apache.org/docs/current/rewrite/flags.html
-#####################################
-DirectoryIndex router.inc
-#can this be commented out?
-
-RewriteEngine On
-RewriteBase /
-
-# if URI is directly to our router, redirect to root (preserve query string)
-#RewriteRule ^/router.inc$ /router.inc [R=301,L,QSA]
-
 # only point the following to our router:
 # - files that don't exist
 # - directories that don't exist
-# - any file that ends with .inc (MISSING)
+# - any file that ends with .inc (TODO)
 # - anything inside the /partials/ or /includes/ directories (STILL NOT WORKING FULLY: a file inside /partials will still be shown)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d [OR]
 RewriteCond %{REQUEST_URI} ^/partials [OR]
 RewriteCond %{REQUEST_URI} ^/includes
-RewriteRule ^(.*)$ /router.inc [L,PT,NS,QSA]
+RewriteRule ^(.*)$ /index.inc [L,PT,NS,QSA]
+
+# TODO - make sure there's a trailing slash on directories
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_URI} !(.*)/$
+#RewriteRule ^(.*)$ %{REQUEST_URI}/ [R=301]
 
 # for complex conditions...
 #RewriteCond a [or]
@@ -92,11 +95,10 @@ RewriteRule ^(.*)$ /router.inc [L,PT,NS,QSA]
 
 
 ### Setup useful environment variables
-### http://www.askapache.com/htaccess/crazy-advanced-mod_rewrite-tutorial.html#Time_Crazy
 #####################################
-#RewriteRule .* - [NE,E=SSIS_LOCATION_PROTOCOL:%{REQUEST_SCHEME}:]
-#RewriteRule .* - [NE,E=SSIS_LOCATION_HOSTNAME:%{HTTP_HOST}]
-#RewriteRule .* - [NE,E=SSIS_LOCATION_PORT:%{SERVER_PORT}]
-#RewriteRule .* - [NE,E=SSIS_LOCATION_PATHNAME:%{REQUEST_URI}]
-#RewriteRule .* - [NE,E=SSIS_LOCATION_SEARCH:?%{QUERY_STRING}]
-#RewriteRule #(.*)$ - [NE,E=SSIS_LOCATION_HASH:%1]
+#RewriteRule .* - [NE,E=SSIS_LOCATION_PROTOCOL:%{REQUEST_SCHEME}] #not working
+#RewriteRule .* - [NE,E=SSIS_LOCATION_HOSTNAME:%{HTTP_HOST}]      #includes the port
+#RewriteRule .* - [NE,E=SSIS_LOCATION_PORT:%{SERVER_PORT}]        #works
+#RewriteRule .* - [NE,E=SSIS_LOCATION_PATHNAME:%{REDIRECT_URL}]   #not working
+#RewriteRule .* - [NE,E=SSIS_LOCATION_SEARCH:?%{QUERY_STRING}]    #works, but each of the following encode the URI: ${QUERY_STRING}, ${REDIRECT_QUERY_STRING} or ${QUERY_STRING_UNESCAPED}
+#RewriteRule \#(.*)$ - [NE,E=SSIS_LOCATION_HASH:%1]               #not working
