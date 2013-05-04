@@ -58,13 +58,13 @@ With so many readily available solutions that do all that this does (and more), 
 The following list of requirements I set for myself while creating this project and coincidentally serve as a feature list:
 
 - Must support i18n through **directory-based** l10n (`http://domain.com/[lang]/full/path/name/`)
-- Modularized html files so that the views can be:
+- Modularized html files so that views can be:
   - simplified as much as possible into small units
   - put into isolated directories (for editor access, for example)
-  - <del>accessed from a remote path (such as Dropbox, etc.)</del>
-  - <del>can be parsed from Markdown (https://github.com/hakimel/reveal.js/#markdown)</del>
+- <del>Content that can be accessed from a remote path (such as Dropbox, etc.)</del>
+- <del>Source content which can be written in Markdown (https://github.com/hakimel/reveal.js/#markdown)</del>
 
-
+<!--
 ```html
 <section data-markdown="example.md" data-separator="^\n\n\n" data-vertical="^\n\n"></section>
 ```
@@ -72,13 +72,16 @@ The following list of requirements I set for myself while creating this project 
 ```html
 <section data-markdown>
     <script type="text/template">
-        <!--#include virtual="/includes/200_html.inc" -->
+        <!--#include virtual="/includes/200_html.inc"
     </script>
 </section>
 ```
+-->
 
 
-### How I found out about SSIs
-I thought it would be remiss if I didn't mention how I came to discover SSI and their usefulness. Let's face it, SSIs are the ___ of Apache. A practically forgotten tool, overshadowed by it's more versatile and powerful server-side language counterparts. In fact, I didn't know they existed until one of my first interviews after college. I was asked what server-side technologies I used and I mentioned PHP for creating dynamic websites
+## How I found out about SSIs
+I thought it would be remiss if I didn't mention how I came to discover SSI and their usefulness. Let's face it, SSIs are the ___ of Apache. A practically forgotten tool, overshadowed by it's more versatile and powerful server-side language counterparts. In fact, I didn't know they existed until one of my first interviews after college.
 
-I was asked why I used PHP for the websites I created. I responded: "Mostly because you can include different files which makes it easier to maintain templates, etc." Obviously this was a naive response and very telling of my inexperience at the time. The interviewer responded: "Why not use server side includes if that's all you do?" To be honest, that's not all that I was using PHP for, but two things came out of that conversation (1) I didn't get the job, and (2) I was introduced to Server Side Includes!
+I was asked why I used PHP for the websites I created to which I responded: "Mostly because you can include different files which makes it easier to maintain templates, etc." Obviously this was a naive response and very telling of my inexperience at the time. The interviewer responded: "Why not use server side includes if all that you need to do is include separate files?"
+
+To be honest, it wasn't the _only_ thing I was using PHP for, but two things came out of this dialog: (1) I didn't get the job, and (2) I was introduced to Server Side Includes!

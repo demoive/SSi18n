@@ -31,7 +31,7 @@ AddOutputFilter INCLUDES .inc .html
 #SSIEndTag " #}}"
 SSIErrorMsg "<!-- SSiS Error. Contact: info@domain.com -->"
 SSITimeFormat "%d/%m/%y"
-SSIUndefinedEcho "<!-- SSiS Variable undefinded -->"
+SSIUndefinedEcho "<!-- SSiS Variable undefined -->"
 
 
 ### Routing
