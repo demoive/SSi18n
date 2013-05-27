@@ -1,5 +1,7 @@
-# Super Simple i18n SSI Site
+# Simple SSI i18n Site
 Get an internationalized site up and running in 3 minutes! No server-side programming languages, Wordpress plugins, databases or nothin'! Plus, you'll get modularized views for your content that is easy to manage, and powerful routing abilities for customized configurations.
+
+https://gist.github.com/demoive/5538457
 
 ### When to use
 - You have a simple and/or small site
@@ -10,8 +12,8 @@ Get an internationalized site up and running in 3 minutes! No server-side progra
 - Your server is Apache (or soon... Nginx)†
 
 ### When not to use
-- You need a lot of server-side logic code
-- ...
+- You need real server-side logic code
+- You need high-scale, production-level performance
 
 †This example is configured to be used with [Apache](http://httpd.apache.org/docs/current/howto/ssi.html), but not much effort would be needed to make it work with [Nginx](http://nginx.org/en/docs/http/ngx_http_ssi_module.html) which would be even more performant!
 
@@ -20,7 +22,7 @@ Get an internationalized site up and running in 3 minutes! No server-side progra
 - Create an initial template file (defaults to `/includes/html.inc`)
 - You're done!
 
-For further optimization, everything inside the `.htaccess` file could be configured within your server settings making this file unecessary altogether
+For further optimization, everything inside the `.htaccess` file could be configured within your server settings making this file unecessary altogether.
 
 
 ## How it works
@@ -40,8 +42,8 @@ The technology that allows for this is called SSI ([Server Side Includes](http:/
 If we're still on the same page, you can see the flexibility this provides for your views. Aside from defining your own variables inside the router file (such as site name, author, contact email, etc.), it is also recommended to define all the available routes (URLs) for your site as variables inside this file. This will give you a powerful toolkit of information to alter the behaviour of individual views. Be creative!
 
 
-## Why the SSiSS solution?
-With so many readily available solutions that do all that this does (and more), why SSiSS? In short, for the sake of simplicity and maintainability. I see too many people opting for a custom installation of Wordpress which they simply use as a CMS. Later, plugins are installed to alter its core behaviour and to manage localization ([qTranslate](http://wordpress.org/extend/plugins/qtranslate/) by [Qian Qin](http://www.qianqin.de/qtranslate/) is a great one, btw). But, if we can reach the same solution with less overhead and dependancies, shouldn't we? Here are some more reasons:
+## Why the SSi18n solution?
+With so many readily available solutions that do all that this does (and more), why SSi18n? In short, for the sake of simplicity and maintainability. I see too many people opting for a custom installation of Wordpress which they simply use as a CMS. Later, plugins are installed to alter its core behaviour and to manage localization ([qTranslate](http://wordpress.org/extend/plugins/qtranslate/) by [Qian Qin](http://www.qianqin.de/qtranslate/) is a great one, btw). But, if we can reach the same solution with less overhead and dependancies, shouldn't we? Here are some more reasons:
 
 - No server-side programming or databases... period!
 - Blazingly fast†
@@ -64,7 +66,9 @@ The following list of requirements I set for myself while creating this project 
 - <del>Content that can be accessed from a remote path (such as Dropbox, etc.)</del>
 - <del>Source content which can be written in Markdown (https://github.com/hakimel/reveal.js/#markdown)</del>
 
+
 <!--
+https://github.com/chjj/marked
 ```html
 <section data-markdown="example.md" data-separator="^\n\n\n" data-vertical="^\n\n"></section>
 ```

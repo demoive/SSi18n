@@ -29,9 +29,9 @@ AddOutputFilter INCLUDES .inc .html
 #XBitHack on
 #SSIStartTag "{{# "
 #SSIEndTag " #}}"
-SSIErrorMsg "<!-- SSiS Error. Contact: info@domain.com -->"
+SSIErrorMsg "<!-- SSi18n Error. Contact: info@domain.com -->"
 SSITimeFormat "%d/%m/%y"
-SSIUndefinedEcho "<!-- SSiS Variable undefined -->"
+SSIUndefinedEcho "<!-- SSi18n variable undefined -->"
 
 
 ### Routing
