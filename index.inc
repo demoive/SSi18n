@@ -14,12 +14,16 @@ ___________\///////////_______\///////////_____\///______\///_____\/////////____
 
 <!--
 TODO:
+- Add an mnav to distinguish from snav
+- Section-specific meta description in header not working
 - Get 404/500 working properly (and manageable)
-- Define routes
 - Consider using custom SSI start and end tags
 - Go through .htaccess and make sure they work on a server
   - http://httpd.apache.org/docs/current/mod/mod_rewrite.html
   - http://httpd.apache.org/docs/current/rewrite/intro.html
+
+NOTE:
+- vars need to be used like this ${var} when used in expr comparisons
 -->
 
 <!--#set var="ssis.debug" value="true" -->
@@ -37,13 +41,14 @@ TODO:
 <!--#endif -->
 
 <!--#include virtual="/includes/routes.inc" -->
-<!--#include virtual="/includes/i18n.inc" -->
+<!--#include virtual="/includes/vars.inc" -->
+<!--#include virtual="/includes/vars.i18n.inc" -->
 
 <!-- Setup complete. Bootstrap the template -->
 <!--#if expr="${ssis.route.code} == ''" -->
-  <!--#include virtual="/includes/404_html.inc" -->
+  <!--#include virtual="/includes/html_400.inc" -->
 <!--#else -->
-  <!--#include virtual="/includes/200_html.inc" -->
+  <!--#include virtual="/includes/html.inc" -->
 <!--#endif -->
 
 <!--#if expr="${ssis.debug} == 'true'" -->

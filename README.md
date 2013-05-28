@@ -19,8 +19,9 @@ https://gist.github.com/demoive/5538457
 
 ## Installation
 - Place the `.htaccess` and `index.inc` file in the webroot of your server
-- Create an initial template file (defaults to `/includes/html.inc`)
+- Create an initial template file (defaults to `/includes/200_html.inc`)
 - You're done!
+- From this point on, it's up to you to customize the structure to fit your needs. The included site files is just an example as a seed-project for you to get started.
 
 For further optimization, everything inside the `.htaccess` file could be configured within your server settings making this file unecessary altogether.
 

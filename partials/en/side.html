@@ -1,0 +1,21 @@
+					<ul class="snav">
+						<li>
+							<a href="/section1">Link to 1-0</a>
+<!--#if expr="${ssis.route.code} == /1-/" -->
+							<ul>
+								<li><a href="/section1/sub-section1">Link to 1-1</a></li>
+								<li><a href="/section1/sub-section2">Link to 1-2</a></li>
+							</ul>
+<!--#endif -->
+						</li>
+						<li>
+							<a href="/section2">Link to 2-0</a>
+<!--#if expr="${ssis.route.code} == /2-/" -->
+							<ul>
+								<li><a href="/section2/sub-section1">Link to 2-1</a></li>
+							</ul>
+<!--#endif -->
+						</li>
+
+						<li><a href="#">Contact us</a></li>
+					</ul>

@@ -1,0 +1,20 @@
+					<ul>
+						<li class="<!--#if expr='${ssis.lang} == en' -->active <!--#endif -->">
+<!--#if expr="${ssis.route}" -->
+							<a href="<!--#echo var='ssis.route' -->">
+<!--#else -->
+							<a href="/">
+<!--#endif -->
+								English
+							</a>
+						</li>
+						<li class="<!--#if expr='${ssis.lang} == fr' -->active <!--#endif -->">
+<!--#if expr="${ssis.route}" -->
+							<a href="/fr<!--#echo var='ssis.route' -->">
+<!--#else -->
+							<a href="/fr/">
+<!--#endif -->
+								Français
+							</a>
+						</li>
+					</ul>
