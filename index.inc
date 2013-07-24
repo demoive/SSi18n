@@ -41,15 +41,15 @@ NOTE:
   <!--#set var="ssis.lang" value="${ssis.lang.default}" -->
 <!--#endif -->
 
-<!--#include virtual="/includes/routes.inc" -->
-<!--#include virtual="/includes/vars.inc" -->
-<!--#include virtual="/includes/vars.i18n.inc" -->
+<!--#include virtual="/_includes/routes.inc" -->
+<!--#include virtual="/_includes/vars.inc" -->
+<!--#include virtual="/_includes/vars.i18n.inc" -->
 
 <!-- Setup complete. Bootstrap the template -->
 <!--#if expr="${ssis.route.code} == ''" -->
-  <!--#include virtual="/includes/html_400.inc" -->
+  <!--#include virtual="/_includes/html_400.inc" -->
 <!--#else -->
-  <!--#include virtual="/includes/html.inc" -->
+  <!--#include virtual="/_includes/html.inc" -->
 <!--#endif -->
 
 <!--#if expr="${ssis.debug} == 'true'" -->
