@@ -26,6 +26,7 @@ NOTE:
 - vars need to be used like this ${var} when used in expr comparisons
 -->
 
+<!--#set var="ssis.debug" value="false" -->
 <!--#set var="ssis.debug" value="true" -->
 <!--#set var="ssis.debug" value="silent" -->
 <!--#config sizefmt="abbrev" -->

@@ -1,6 +1,6 @@
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<title><!--#echo var="ssis.i18n.${ssis.lang}.meta.title" --></title>
 		<link rel="shortcut icon" href="/favicon.png">
 <!-- if expr="${ssis.route.code}" -->
