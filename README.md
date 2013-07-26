@@ -18,8 +18,8 @@ https://gist.github.com/demoive/5538457
 - You need high-scale, production-level performance
 
 ## Installation
-- Place the `.htaccess` and `index.inc` file in the webroot of your server
-- Create an initial template file (defaults to `/includes/200_html.inc`)
+- Place the `.htaccess` and `index.inc` file plus the `_includes/` folder in the webroot of your server
+- Create an initial template file (defaults to `/_includes/200_html.inc`)
 - Configure the other includes (var, var.i18n, routes)
 - You're done!
 - From this point on, it's up to you to customize the structure to fit your needs. The included site files is just an example as a seed-project for you to get started.
