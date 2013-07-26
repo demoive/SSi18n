@@ -14,6 +14,8 @@ ___________\///////////_______\///////////_____\///______\///_____\/////////____
 
 <!--
 TODO:
+
+- Create one vars.i18n.inc per language and only include the one for the current lang
 - Add an mnav to distinguish from snav
 - Section-specific meta description in header not working
 - Get 404/500 working properly (and manageable)
@@ -39,6 +41,12 @@ NOTE:
 <!--#endif -->
 <!--#if expr="${ssis.lang} == ''" -->
   <!--#set var="ssis.lang" value="${ssis.lang.default}" -->
+<!--#endif -->
+
+<!--#if expr='${ssis.lang} != ${ssis.lang.default}' -->
+  <!--#set var="ssis.route.prefix" value="/${ssis.lang}" -->
+<!--#else -->
+  <!--#set var="ssis.route.prefix" value="" -->
 <!--#endif -->
 
 <!--#include virtual="/_includes/routes.inc" -->
