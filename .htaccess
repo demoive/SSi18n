@@ -29,9 +29,9 @@ AddOutputFilter INCLUDES .inc .ssi .shtml .shtm
 #XBitHack on
 #SSIStartTag "{{# "
 #SSIEndTag " #}}"
-SSIErrorMsg "<!-- SSiS Error -->"
-SSITimeFormat "%Y-%m-%d"
-SSIUndefinedEcho "<!-- SSiS variable undefined -->"
+SSIErrorMsg "<!-- SSiS Error -->" # errmsg
+SSITimeFormat "%Y-%m-%d" # timefmt
+SSIUndefinedEcho "<!-- SSiS variable undefined -->" # echomsg
 
 
 ### Routing

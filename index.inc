@@ -32,7 +32,12 @@ NOTE:
 <!--#set var="ssis.debug" value="false" -->
 <!--#set var="ssis.debug" value="true" -->
 <!--#set var="ssis.debug" value="silent" -->
-<!--#config sizefmt="abbrev" -->
+
+<!--#set var="ssis.config.timefmt" value="%Y-%m-%d" -->
+<!--#set var="ssis.config.sizefmt" value="abbrev" -->
+
+<!--#config timefmt="${ssis.config.timefmt}" -->
+<!--#config sizefmt="${ssis.config.sizefmt}" -->
 
 <!--#set var="ssis.lang.default" value="en" -->
 <!--#if expr="$REQUEST_URI == /^(?:\/([a-z]{2}))?(\/.*?)?([?].*?)?$/" -->
