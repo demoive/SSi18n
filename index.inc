@@ -17,6 +17,7 @@ TODO:
 
 - Create one vars.i18n.inc per language and only include the one for the current lang
 - Add an mnav to distinguish from snav
+- Be able to view existing files (instead of redirecting to home page)
 - Section-specific meta description in header not working
 - Get 404/500 working properly (and manageable)
 - Consider using custom SSI start and end tags

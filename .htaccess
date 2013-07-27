@@ -25,13 +25,13 @@ AddOutputFilterByType DEFLATE application/atom+xml application/javascript applic
 #Options -Includes
 #Options -ExecCGI
 Options +IncludesNOEXEC
-AddOutputFilter INCLUDES .inc .html
+AddOutputFilter INCLUDES .inc .ssi .shtml .shtm
 #XBitHack on
 #SSIStartTag "{{# "
 #SSIEndTag " #}}"
-SSIErrorMsg "<!-- SSiS Error. Contact: info@domain.com -->"
-SSITimeFormat "%d/%m/%y"
-SSIUndefinedEcho "<!-- SSi18n variable undefined -->"
+SSIErrorMsg "<!-- SSiS Error -->"
+SSITimeFormat "%Y-%m-%d"
+SSIUndefinedEcho "<!-- SSiS variable undefined -->"
 
 
 ### Routing
