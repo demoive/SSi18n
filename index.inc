@@ -14,13 +14,11 @@ ___________\///////////_______\///////////_____\///______\///_____\/////////____
 
 <!--
 TODO:
-
-- Create one vars.i18n.inc per language and only include the one for the current lang
+- Create documentation about variables, namespaces, how to override/define etc.
+- Change ssis.lang to ssis.route.lang?
+- Can maybe be smarter about the debug = true/silent
+  - create an additional variable with "echo error message prefix and suffix" which includes the HTML comment strings
 - Add an mnav to distinguish from snav
-- Be able to view existing files (instead of redirecting to home page)
-- Section-specific meta description in header not working
-- Get 404/500 working properly (and manageable)
-- Consider using custom SSI start and end tags
 - Go through .htaccess and make sure they work on a server
   - http://httpd.apache.org/docs/current/mod/mod_rewrite.html
   - http://httpd.apache.org/docs/current/rewrite/intro.html
@@ -29,17 +27,17 @@ NOTE:
 - vars need to be used like this ${var} when used in expr comparisons
 -->
 
-<!--#set var="ssis.debug" value="false" -->
-<!--#set var="ssis.debug" value="true" -->
 <!--#set var="ssis.debug" value="silent" -->
 
+<!--#set var="ssis.lang.default" value="en" -->
 <!--#set var="ssis.config.timefmt" value="%Y-%m-%d" -->
 <!--#set var="ssis.config.sizefmt" value="abbrev" -->
+
+<!--#include virtual="/_includes/config.inc" -->
 
 <!--#config timefmt="${ssis.config.timefmt}" -->
 <!--#config sizefmt="${ssis.config.sizefmt}" -->
 
-<!--#set var="ssis.lang.default" value="en" -->
 <!--#if expr="$REQUEST_URI == /^(?:\/([a-z]{2}))?(\/.*?)?([?].*?)?$/" -->
   <!--#set var="ssis.lang" value="$1" -->
   <!--#set var="ssis.route" value="$2" -->
