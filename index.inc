@@ -12,19 +12,6 @@ ________\///\\\\\\\\\\\/___\///\\\\\\\\\\\/___\/\\\_____\/\\\__\///\\\\\\\\\/___
 ___________\///////////_______\///////////_____\///______\///_____\/////////_____\///____\///_____
 -->
 
-<!--
-TODO:
-- Create documentation about variables, namespaces, how to override/define etc.
-- Change ssis.lang to ssis.route.lang?
-- Add an mnav to distinguish from snav
-- Go through .htaccess and make sure they work on a server
-  - http://httpd.apache.org/docs/current/mod/mod_rewrite.html
-  - http://httpd.apache.org/docs/current/rewrite/intro.html
-
-NOTE:
-- vars need to be used like this ${var} when used in expr comparisons
--->
-
 <!--#set var="ssis.debug" value="silent" -->
 <!--#set var="ssis.debug.prefix" value="<!--" -->
 <!--#set var="ssis.debug.suffix" value="-->" -->
