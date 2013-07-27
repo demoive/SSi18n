@@ -16,8 +16,6 @@ ___________\///////////_______\///////////_____\///______\///_____\/////////____
 TODO:
 - Create documentation about variables, namespaces, how to override/define etc.
 - Change ssis.lang to ssis.route.lang?
-- Can maybe be smarter about the debug = true/silent
-  - create an additional variable with "echo error message prefix and suffix" which includes the HTML comment strings
 - Add an mnav to distinguish from snav
 - Go through .htaccess and make sure they work on a server
   - http://httpd.apache.org/docs/current/mod/mod_rewrite.html
@@ -28,12 +26,19 @@ NOTE:
 -->
 
 <!--#set var="ssis.debug" value="silent" -->
+<!--#set var="ssis.debug.prefix" value="<!--" -->
+<!--#set var="ssis.debug.suffix" value="-->" -->
 
 <!--#set var="ssis.lang.default" value="en" -->
 <!--#set var="ssis.config.timefmt" value="%Y-%m-%d" -->
 <!--#set var="ssis.config.sizefmt" value="abbrev" -->
 
 <!--#include virtual="/_includes/config.inc" -->
+
+<!--#if expr="${ssis.debug} == 'true'" -->
+  <!--#set var="ssis.debug.prefix" value="" -->
+  <!--#set var="ssis.debug.suffix" value="" -->
+<!--#endif -->
 
 <!--#config timefmt="${ssis.config.timefmt}" -->
 <!--#config sizefmt="${ssis.config.sizefmt}" -->
@@ -57,17 +62,20 @@ NOTE:
 <!--#include virtual="/_includes/vars.inc" -->
 <!--#include virtual="/_includes/vars.i18n.inc" -->
 
-<!-- Setup complete. Bootstrap the template -->
+<!--#if expr="${ssis.debug} != 'false'" -->
+  <!--#echo var="ssis.debug.prefix" -->
+  SSiS: Init complete. Bootstrap the template
+  <!--#echo var="ssis.debug.suffix" -->
+<!--#endif -->
+
 <!--#if expr="${ssis.route.code} == ''" -->
   <!--#include virtual="/_includes/html_400.inc" -->
 <!--#else -->
   <!--#include virtual="/_includes/html.inc" -->
 <!--#endif -->
 
-<!--#if expr="${ssis.debug} == 'true'" -->
+<!--#if expr="${ssis.debug} != 'false'" -->
+  <!--#echo var="ssis.debug.prefix" -->
   <!--#printenv -->
-<!--#elif expr="${ssis.debug} == 'silent'" -->
-  <!--
-  <!--#printenv -->
-  -->
+  <!--#echo var="ssis.debug.suffix" -->
 <!--#endif -->
