@@ -1,6 +1,9 @@
 # Simple SSI i18n Site
 Get an internationalized site up and running in 3 minutes! No server-side programming languages, Wordpress plugins, databases or nothin'! Plus, you'll get modularized views for your content that is easy to manage, and powerful routing abilities for customized configurations.
 
+### Sample site:
+- http://barvinssurvins.fr/
+
 ### When to use
 - You have a simple and/or small site
 - You need to support multiple languages
