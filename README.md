@@ -1,5 +1,5 @@
 # Simple SSI i18n Site
-Get an internationalized site up and running in 3 minutes! No server-side programming languages, Wordpress plugins, databases or nothin'! Plus, you'll get modularized views for your content that is easy to manage, and powerful routing abilities for customized configurations.
+A simple, scalable and (performant?) solution for internationalized sites. Get up and running in 3 minutes! No server-side programming languages, Wordpress plugins, databases or nothin'! Plus, you'll get modularized views for your content that is easy to manage, and powerful routing abilities for customized configurations.
 
 ### Sample site:
 - http://barvinssurvins.fr/
@@ -48,7 +48,7 @@ If you're still with me, you can see the flexibility this provides for your view
 
 
 ## Why the SSi18n solution?
-With so many readily available solutions that do all that this does (and more), why SSi18n? In short, for the sake of simplicity and maintainability. I see too many people opting for a custom installation of Wordpress which they simply use as a CMS. Later, plugins are installed to alter its core behaviour and to manage localization ([qTranslate](http://wordpress.org/extend/plugins/qtranslate/) by [Qian Qin](http://www.qianqin.de/qtranslate/) is a great one, btw). But, if we can reach the same solution with less overhead and dependancies, shouldn't we? Here are some more reasons:
+With so many readily available solutions that do all that this does (and more), why SSi18n? In short, for the sake of simplicity, maintainability and clarity when looking at the code. I see too many people opting for a custom installation of Wordpress which they simply use as a CMS. Later, plugins are installed to alter its core behaviour and to manage localization ([qTranslate](http://wordpress.org/extend/plugins/qtranslate/) by [Qian Qin](http://www.qianqin.de/qtranslate/) is a great one, btw). But, if we can reach the same solution with less overhead and dependancies, shouldn't we? Here are some more reasons:
 
 - No server-side programming or databases... period!
 - Blazingly fast... I think?†
